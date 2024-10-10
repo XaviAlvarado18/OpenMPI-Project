@@ -74,7 +74,7 @@ Ejecutar con:
 
 Compilar con:
 
-```gcc -o des_bruteforce des_bruteforce.c```
+```gcc des_bruteforce.c -o des_bruteforce -lssl -lcrypto```
  
 Ejecutar con:
 
