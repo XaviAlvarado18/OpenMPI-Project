@@ -23,6 +23,7 @@
 #include <unistd.h>
 #include <openssl/des.h>
 
+// Función para descifrar el texto usando DES
 void decrypt(long key, char *ciph, int len) {
     DES_cblock des_key;
     DES_key_schedule schedule;
@@ -39,6 +40,7 @@ void decrypt(long key, char *ciph, int len) {
     }
 }
 
+// Función para cifrar el texto usando DES
 void encrypt(long key, char *ciph, int len) {
     DES_cblock des_key;
     DES_key_schedule schedule;
@@ -56,6 +58,8 @@ void encrypt(long key, char *ciph, int len) {
 }
 
 char search[] = " the ";
+
+// Función para probar una clave en un rango determinado
 int tryKey(long key, char *ciph, int len) {
     char temp[len+1];
     memcpy(temp, ciph, len);
@@ -68,7 +72,7 @@ unsigned char cipher[] = {108, 245, 65, 63, 125, 200, 150, 66, 17, 170, 207, 170
 
 int main(int argc, char *argv[]) {
     int N, id;
-    long upper = (1L << 56); // upper bound DES keys 2^56
+    long upper = (1L << 56); // Definimos un rango grande para las llaves (24 bits en este caso)
     long mylower, myupper;
     MPI_Status st;
     MPI_Request req;
@@ -115,7 +119,8 @@ int main(int argc, char *argv[]) {
         printf("Mensaje descifrado: %s\n", cipher);
         fflush(stdout);
     }
-
+    
+    // Finalizar MPI
     MPI_Finalize();
     return 0;
 }

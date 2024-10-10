@@ -23,6 +23,7 @@
 #include <unistd.h>
 #include <openssl/des.h>
 
+// Función para descifrar el texto usando DES
 void decrypt(long key, char *ciph, int len) {
     DES_cblock des_key;
     DES_key_schedule schedule;
@@ -39,6 +40,7 @@ void decrypt(long key, char *ciph, int len) {
     }
 }
 
+// Función para cifrar el texto usando DES
 void encrypt(long key, char *plain, char *ciph, int len) {
     DES_cblock des_key;
     DES_key_schedule schedule;
@@ -55,6 +57,7 @@ void encrypt(long key, char *plain, char *ciph, int len) {
     }
 }
 
+// Función para probar una clave en un rango determinado
 
 char search[] = " the ";
 int tryKey(long key, char *ciph, int len) {
@@ -73,9 +76,9 @@ int main(int argc, char *argv[]) {
     MPI_Request req;
     MPI_Comm comm = MPI_COMM_WORLD;
 
-    // Test message and key
+    // Proabr mensaje y llave
     char plaintext[] = "Hello the World!"; 
-    long test_key = 1234; // Simple test key
+    long test_key = 2222; // Simple test key
     int ciphlen = ((strlen(plaintext) + 7) / 8) * 8;
     char ciphertext[ciphlen];
 
@@ -103,7 +106,7 @@ int main(int argc, char *argv[]) {
         myupper = upper;
     }
 
-    printf("Process %d of %d searching range [%ld, %ld]\n", id, N, mylower, myupper);
+    printf("Proceso %d de %d buscando rango [%ld, %ld]\n", id, N, mylower, myupper);
     fflush(stdout);
 
     long found = 0;
@@ -128,6 +131,7 @@ int main(int argc, char *argv[]) {
         printf("Decrypted message: %s\n", ciphertext);
     }
 
+    // Finalizar MPI
     MPI_Finalize();
     return 0;
 }

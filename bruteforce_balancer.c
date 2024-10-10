@@ -1,3 +1,12 @@
+// Universidad del Valle de Guatemala
+// Computación paralela y distribuida
+// 
+// Autores:
+// Kristopher Javier Alvarado López	 |  Carné 21188
+// David Jonathan Aragon Vasquez 		 |  Carné 21053
+// Renatto Esteban Guzman Sosa		   |  Carné 21646
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
