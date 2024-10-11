@@ -155,6 +155,10 @@ int brute_force_des(const unsigned char* ciphertext, const unsigned char* origin
                     printf("%02x", key[j]);
                 }
                 printf("\n");
+                
+                // **Nuevo: Imprimir el mensaje original**
+                printf("Mensaje original: %s\n", original_text);
+                
                 return 1;  // Llave encontrada
             }
         }
@@ -192,7 +196,7 @@ int main() {
     ERR_load_crypto_strings();
 
     // Texto original y cifrado
-    const unsigned char original_text[TEXT_SIZE] = "Texto123";  // Debe ser de 8 bytes para DES
+    const unsigned char original_text[TEXT_SIZE + 1] = "Texto123";  // Debe ser de 8 bytes para DES (+1 para el terminador nulo)
     unsigned char ciphertext[TEXT_SIZE];  // Sin padding, 8 bytes son suficientes
 
     // Definir una llave secreta conocida con una parte fija y una parte variable
@@ -216,7 +220,8 @@ int main() {
     printf("\n");
 
     // Verificación adicional
-    unsigned char decrypted_verify[TEXT_SIZE];
+    unsigned char decrypted_verify[TEXT_SIZE + 1];  // +1 para el terminador nulo
+    memset(decrypted_verify, 0, sizeof(decrypted_verify));
     if (des_decrypt(ciphertext, decrypted_verify, secret_key) == 0) {
         fprintf(stderr, "Error descifrando para verificación.\n");
         // Liberar los proveedores antes de salir
