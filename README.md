@@ -53,7 +53,7 @@ Ejecutar con:
 
 Compilar con:
 
-```mpicc -o bruteforce_hibrid bruteforce_hibrid.c -lcrypto```
+```mpicc -fopenmp -o bruteforce_hibridX bruteforce_hibridX.c -lssl -lcrypto```
  
 Ejecutar con:
 
